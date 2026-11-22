@@ -1,0 +1,20 @@
+{
+  "kind": "classic",
+  "dataset": {
+    "name": "cifar100",
+    "root": "./data",
+    "val_fraction": 0.1,
+    "class_subset": null,
+    "cache_on_device": true,
+    "augment_flip": true
+  },
+  "train": {
+    "model": { "base_filters": 32, "n_blocks": 3, "dropout": 0.25 },
+    "optim": { "optimizer": "adam", "lr": 0.001, "weight_decay": 0.0001, "batch_size": 128 },
+    "epochs": 20,
+    "amp": true,
+    "channels_last": true,
+    "seed": 42
+  },
+  "note": "baseline manual"
+}

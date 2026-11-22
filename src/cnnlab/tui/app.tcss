@@ -1,0 +1,354 @@
+/* Paleta propria: nao depende dos nomes de variavel do tema do Textual, que
+   mudam entre versoes. Terminal escuro, um acento so, cores semanticas para
+   status. */
+
+$pep-bg: #0b0f14;
+$pep-panel: #131a22;
+$pep-line: #253243;
+$pep-text: #d7e0ea;
+$pep-muted: #7d8b9a;
+$pep-accent: #4fd6be;
+$pep-ok: #66d19e;
+$pep-warn: #e2b341;
+$pep-err: #f06c75;
+
+Screen {
+    background: $pep-bg;
+    color: $pep-text;
+    layout: vertical;
+}
+
+/* -- moldura ---------------------------------------------------------- */
+
+/* Nada de `dock` na moldura: titulo, nav, corpo e status sao irmaos numa
+   coluna. Dois widgets docados na mesma borda se sobrepoem. */
+
+#titlebar {
+    height: 1;
+    padding: 0 1;
+    background: $pep-accent;
+    color: $pep-bg;
+    text-style: bold;
+}
+
+#nav {
+    background: $pep-panel;
+}
+
+#nav Tab {
+    color: $pep-muted;
+}
+
+#nav Tab.-active {
+    color: $pep-accent;
+    text-style: bold;
+}
+
+#statusbar {
+    height: 1;
+    background: $pep-panel;
+    color: $pep-muted;
+}
+
+#status-left {
+    width: 1fr;
+    padding: 0 1;
+}
+
+#status-right {
+    width: auto;
+    padding: 0 1;
+    color: $pep-line;
+}
+
+#body {
+    height: 1fr;
+}
+
+/* -- as quatro telas -------------------------------------------------- */
+
+.view {
+    height: 1fr;
+    layout: horizontal;
+}
+
+.sidebar {
+    width: 38;
+    max-width: 50%;
+    height: 1fr;
+    padding: 1 2;
+    background: $pep-panel;
+    border-right: solid $pep-line;
+    scrollbar-size: 1 1;
+}
+
+.main {
+    width: 1fr;
+    height: 1fr;
+    padding: 1 2;
+    scrollbar-size: 1 1;
+}
+
+/* Terminal estreito: sidebar vira faixa superior em vez de coluna. */
+.-narrow .view {
+    layout: vertical;
+}
+
+.-narrow .sidebar {
+    width: 1fr;
+    max-width: 100%;
+    height: auto;
+    max-height: 45%;
+    border-right: none;
+    border-bottom: solid $pep-line;
+    /* Faixa curta: o bloco inteiro rola, senao os botoes ficam inalcancaveis. */
+    overflow-y: auto;
+}
+
+/* -- tipografia ------------------------------------------------------- */
+
+.section {
+    margin: 1 0 0 0;
+    color: $pep-accent;
+    text-style: bold;
+}
+
+.section-first {
+    margin: 0;
+}
+
+.hint {
+    color: $pep-muted;
+}
+
+.panel-title {
+    color: $pep-accent;
+    text-style: bold;
+}
+
+/* -- formularios ------------------------------------------------------ */
+
+/* Uma linha por campo: com 9 campos na sidebar, respiro vira scroll. */
+.field {
+    height: auto;
+    margin: 0;
+}
+
+.field-label {
+    width: 15;
+    color: $pep-muted;
+    padding: 0 1 0 0;
+}
+
+.field Input,
+.field Select {
+    width: 1fr;
+}
+
+/* Os campos rolam; os botoes ficam sempre visiveis abaixo deles. */
+#mode-fields {
+    height: 1fr;
+    min-height: 6;
+}
+
+#mode-fields > VerticalScroll {
+    height: 1fr;
+    scrollbar-size: 1 1;
+}
+
+/* O Switch mantem a altura padrao: comprimir o padding zera o slider. */
+Switch {
+    background: $pep-bg;
+    border: tall $pep-line;
+}
+
+Switch > .switch--slider {
+    color: $pep-line;
+    background: $pep-bg;
+}
+
+Switch.-on > .switch--slider {
+    color: $pep-accent;
+}
+
+.buttons {
+    height: auto;
+    margin: 1 0 0 0;
+}
+
+.buttons Button {
+    margin: 0 1 0 0;
+    min-width: 10;
+}
+
+Button {
+    border: none;
+    height: 1;
+    background: $pep-line;
+    color: $pep-text;
+}
+
+Button:hover {
+    background: $pep-accent;
+    color: $pep-bg;
+}
+
+Button.-primary {
+    background: $pep-accent;
+    color: $pep-bg;
+    text-style: bold;
+}
+
+Input, Select {
+    background: $pep-bg;
+    border: none;
+    height: 1;
+}
+
+Input:focus {
+    background: $pep-bg;
+    color: $pep-accent;
+}
+
+RadioSet {
+    border: none;
+    background: $pep-panel;
+    height: auto;
+    margin: 0 0 1 0;
+}
+
+/* -- painel de execucao ----------------------------------------------- */
+
+.card {
+    height: auto;
+    padding: 1 2;
+    margin: 0 0 1 0;
+    background: $pep-panel;
+    border: round $pep-line;
+    border-title-color: $pep-accent;
+}
+
+.bar-label {
+    color: $pep-muted;
+}
+
+ProgressBar {
+    width: 1fr;
+    margin: 0 0 1 0;
+}
+
+Bar > .bar--bar {
+    color: $pep-accent;
+}
+
+Bar > .bar--complete {
+    color: $pep-ok;
+}
+
+PercentageStatus {
+    color: $pep-muted;
+}
+
+.metrics {
+    height: auto;
+    margin: 1 0 0 0;
+}
+
+.metric {
+    width: 1fr;
+    height: 3;
+    padding: 0 1;
+    margin: 0 1 0 0;
+    background: $pep-panel;
+    border-left: thick $pep-accent;
+}
+
+.run-line {
+    color: $pep-text;
+    text-style: bold;
+    margin: 0 0 1 0;
+}
+
+Sparkline {
+    width: 1fr;
+    height: 3;
+}
+
+Sparkline > .sparkline--max-color {
+    color: $pep-accent;
+}
+
+Sparkline > .sparkline--min-color {
+    color: $pep-line;
+}
+
+RichLog {
+    height: 12;
+    background: $pep-panel;
+    border: round $pep-line;
+    border-title-color: $pep-accent;
+    padding: 0 1;
+    scrollbar-size: 1 1;
+}
+
+/* -- tabelas ---------------------------------------------------------- */
+
+DataTable {
+    height: auto;
+    max-height: 60%;
+    background: $pep-panel;
+    border: round $pep-line;
+    border-title-color: $pep-accent;
+    scrollbar-size: 1 1;
+}
+
+DataTable > .datatable--header {
+    background: $pep-panel;
+    color: $pep-accent;
+    text-style: bold;
+}
+
+DataTable > .datatable--cursor {
+    background: $pep-accent;
+    color: $pep-bg;
+}
+
+/* -- estados ---------------------------------------------------------- */
+
+.ok {
+    color: $pep-ok;
+}
+
+.warn {
+    color: $pep-warn;
+}
+
+.err {
+    color: $pep-err;
+}
+
+/* -- predicao --------------------------------------------------------- */
+
+#image-box {
+    height: 11;
+    content-align: center middle;
+    color: $pep-muted;
+    background: $pep-panel;
+    border: round $pep-line;
+    border-title-color: $pep-accent;
+    margin: 0 0 1 0;
+}
+
+.top5-row {
+    height: 1;
+}
+
+.top5-label {
+    width: 14;
+    color: $pep-muted;
+}
+
+.top5-bar {
+    width: 1fr;
+    color: $pep-accent;
+}

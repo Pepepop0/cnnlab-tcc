@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "Se usar este código, cite o trabalho abaixo."
+title: "Otimização multiobjetivo de arquitetura de redes neurais convolucionais para inferência eficiente em GPU"
+type: software
+authors:
+  - family-names: Antunes
+    given-names: Pedro Henrique Alves
+license: MIT
+repository-code: "https://github.com/Pepepop0/cnnlab-tcc"
+version: 0.1.0
+date-released: 2026-11-21
+keywords:
+  - neural architecture search
+  - multi-objective optimization
+  - NSGA-II
+  - quantization
+  - TensorRT
+preferred-citation:
+  type: thesis
+  title: "Otimização multiobjetivo de arquitetura de redes neurais convolucionais para inferência eficiente em GPU"
+  authors:
+    - family-names: Antunes
+      given-names: Pedro Henrique Alves
+  institution:
+    name: "Universidade Federal Rural de Pernambuco"
+  year: 2026
+  thesis-type: "Trabalho de Conclusão de Curso (Bacharelado em Sistemas de Informação)"

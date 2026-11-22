@@ -1,0 +1,38 @@
+# ambiente e cache
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# dados, execuções e artefatos (ficam fora do repositório)
+data/
+runs/
+uploads/
+*.pt
+*.onnx
+*.plan
+*.engine
+queue.json
+settings.json
+predictions.jsonl
+
+# bancos de dados
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+
+# editores e sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,67 @@
+[project]
+name = "cnnlab-tcc"
+version = "0.1.0"
+description = "Otimização multiobjetivo de arquitetura e representação numérica de CNNs para inferência eficiente em GPU (TCC)"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Pedro Henrique Alves Antunes" }]
+requires-python = ">=3.12"
+keywords = ["neural architecture search", "multi-objective optimization", "NSGA-II", "quantization", "TensorRT"]
+dependencies = [
+    "textual>=0.80",
+    "pydantic>=2.8",
+    "numpy>=1.26",
+    "pillow>=10.0",
+    "deap>=1.4",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.24", "textual-dev>=1.5", "ruff>=0.8"]
+tcc-trt = ["onnx==1.23.0", "onnxscript==0.7.2", "tensorrt-cu13==11.3.0.99"]
+tcc-ui = ["streamlit>=1.40"]
+
+[project.urls]
+Repository = "https://github.com/Pepepop0/cnnlab-tcc"
+
+[project.scripts]
+cnnlab = "cnnlab.cli:main"
+cnnlab-tcc = "cnnlab.tcc.operation.cli:main"
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["slow: exige download de dataset ou GPU"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+src = ["src", "tests", "tools"]
+# contratos compartilhados da prova de conceito: mantidos byte a byte
+extend-exclude = ["src/cnnlab/config.py", "src/cnnlab/events.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+# Regras de estilo cuja correção mudaria a lógica ou nomes já documentados; ficam desligadas.
+ignore = [
+    "E501",   # linhas longas: o formatador cuida do que é seguro quebrar
+    "F401",   # imports mantidos: vários são reexportados ou substituídos nos testes
+    "E731",   # lambda atribuída
+    "E741",   # nomes curtos como l, I, O em fórmulas
+    "B007",   # variável de laço não usada
+    "B008",   # chamada em valor padrão
+    "B023",   # funções internas usadas dentro do próprio laço
+    "B904",   # raise dentro de except
+    "B905",   # zip sem strict
+    "UP007", "UP031", "UP047",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+"tests/**" = ["B011", "F811", "F841"]
